@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { dataConfig, sslConfig } from "@/lib/sslCommerzConfig";
 import dbConnect from "@/db/connectMongo";
 import PaymentModel from "@/models/paymentModel";
+import hotelModel from "@/models/hotelModel";
 import CryptoJS from "crypto-js";
 import { auth } from "@/auth";
 

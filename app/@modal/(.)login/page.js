@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import Loading from "./loading";
 
 export default function Page() {
-  const [BASE_URL, setBASE_URL] = useState("/");
+  const [BASE_URL, setBASE_URL] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const callback = searchParams.get("callback");
@@ -40,7 +40,7 @@ export default function Page() {
 
   const handleContinueWithGoogle = async () => {
     await signIn("google", {
-      callbackUrl: callback ? decodeURIComponent(BASE_URL/callback) : BASE_URL,
+      callbackUrl: callback ? decodeURIComponent(BASE_URL+"/"+callback) : BASE_URL,
     });
   };
 

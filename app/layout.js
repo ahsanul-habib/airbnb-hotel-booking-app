@@ -1,5 +1,6 @@
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
+import "keep-react/css";
 import { ToastWrapper } from "keep-react";
 import { Inter } from "next/font/google";
 

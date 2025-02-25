@@ -86,7 +86,7 @@ const CreatePage = () => {
         Publish
       </button>
       {/* Property Title and Rating */}
-      <div className="mb-6">
+      <div className="mb-6 mt-6">
         <EditBox
           size="medium"
           label="Property Name"

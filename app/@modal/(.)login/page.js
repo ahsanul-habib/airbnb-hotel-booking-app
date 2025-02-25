@@ -127,14 +127,6 @@ export default function Page() {
               </button>
             </form>
           </div>
-          <div className="text-center text-sm text-gray-600">
-            <p>
-              Don&apos;t have an account?{" "}
-              <Link href="/signup" className="text-accent hover:underline">
-                Sign up
-              </Link>
-            </p>
-          </div>
         </div>
       </div>
     </div>

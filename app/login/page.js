@@ -5,9 +5,12 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { doSignInWithCredentials } from "@/app/actions/auth/login";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
+import Loading from "../loading";
+import getBaseURL from "../actions/common/getBaseURL";
 
 const Page=()=> {
+  const [BASE_URL, setBASE_URL] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const callback = searchParams.get("callback");
@@ -40,9 +43,21 @@ const Page=()=> {
 
   const handleContinueWithGoogle = async () => {
     await signIn("google", {
-      callbackUrl: callback ? decodeURIComponent(callback) : process.env.BASE_URL,
+      callbackUrl: callback ? decodeURIComponent(BASE_URL+"/"+callback) : BASE_URL,
     });
   };
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchBaseURL = async () => {
+      const response = await getBaseURL();
+      if(isMounted&&response) setBASE_URL(response);
+    }
+    fetchBaseURL();
+    return () => {isMounted = false}
+  },[])
+
+  if(!BASE_URL) return <Loading/>;
 
   return (
     <div className="w-full flex justify-center h-full flex-grow items-center">

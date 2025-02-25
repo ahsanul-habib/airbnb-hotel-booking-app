@@ -4,11 +4,16 @@ import Link from "next/link";
 import { toast } from "keep-react";
 import { doSignUpWithCredentials } from "@/app/actions/auth/register";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import getBaseURL from "../actions/common/getBaseURL";
+import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 export default function Page() {
+  const [BASE_URL, setBASE_URL] = useState("");
   const router = useRouter();
-
+  const searchParams = useSearchParams();
+  const callback = searchParams.get("callback");
   const handleSubmit = async (formData) => {
     toast.promise(
       async () => {
@@ -32,8 +37,22 @@ export default function Page() {
   };
 
   const handleContinueWithGoogle = async () => {
-    await signIn("google", { callbackUrl: "/" });
+    await signIn("google", {
+      callbackUrl: callback ? decodeURIComponent(BASE_URL+"/"+callback) : BASE_URL,
+    });
   };
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchBaseURL = async () => {
+      const response = await getBaseURL();
+      if(isMounted&&response) setBASE_URL(response);
+    }
+    fetchBaseURL();
+    return () => {isMounted = false}
+  },[])
+
+  if(!BASE_URL) return <Loading/>;
 
   return (
     <div className="w-full flex justify-center h-full min-h-reen items-center">

@@ -85,7 +85,7 @@ const NavbarButton = ({ user }) => {
                   </li>
                 </button>
                 <button
-                  onClick={() => redirectTo("/hotel/create")}
+                  onClick={() => redirectTo("/signup")}
                   className="w-full"
                 >
                   <li className="px-3 py-2 text-sm text-zinc-700 transition-all hover:bg-zinc-50 hover:text-zinc-800 hover:pl-4">

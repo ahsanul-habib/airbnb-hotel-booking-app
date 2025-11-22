@@ -11,12 +11,11 @@ export const metadata = {
   description: "Find and book your perfect stay",
 };
 
-export default function RootLayout({ children,modal }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`flex flex-col min-h-screen ${inter.className}`}>
         <Navbar />
-        {modal}
         {children}
         <ToastWrapper position="top-right"/>
       </body>

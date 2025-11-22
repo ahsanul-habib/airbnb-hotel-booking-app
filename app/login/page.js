@@ -111,6 +111,7 @@ const Page=()=> {
               name="email"
               type="email"
               placeholder="Email"
+              defaultValue="ahsanulhabib.cse@gmail.com"
               required
               className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
             />
@@ -118,6 +119,7 @@ const Page=()=> {
               name="password"
               type="password"
               placeholder="Password"
+              defaultValue="ahsanul"
               required
               className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
             />
@@ -128,6 +130,11 @@ const Page=()=> {
               Continue
             </button>
           </form>
+        </div>
+        <div className="text-center text-xs text-gray-500 bg-gray-50 p-3 rounded-lg mb-4">
+          <p className="font-semibold mb-1">Test Account:</p>
+          <p>Email: ahsanulhabib.cse@gmail.com</p>
+          <p>Password: ahsanul</p>
         </div>
         <div className="text-center text-sm text-gray-600">
           <p>
